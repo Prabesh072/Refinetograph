@@ -49,11 +49,7 @@ function App() {
       <Alert alert={alert} />
       <Body />
       <div className="container my-3">
-        {/* <Routes> */}
-        {/* <Route */}
-        {/* path="/" */}
-        {/* element={ */}
-      
+
       </div>
     </>
   );
