@@ -8,6 +8,8 @@ const Body = () => {
             <p>Upscale Image/ Deblur Image/ Enhance Night Image</p>
 
             <div style={{ display: "flex", gap: "30px", marginTop: "30px" }}>
+                <Link to="/upscale">
+                
                 <button
                     type="button"
                     className="btn btn-primary me-2"
@@ -15,15 +17,22 @@ const Body = () => {
                 >
                     Upscale Image
                 </button>
+                </Link>
 
+
+                <Link to="/deblur-image"> 
                 <button
                     type="button"
                     className="btn btn-primary me-2"
                     style={{ fontSize: "16px", padding: "10px 20px" }}
-                >
+                    >
                     Deblur Image
                 </button>
-                {/* <Link to="nightimage" > */}
+                </Link>
+
+
+
+                <Link to="/night-image" >
                     <button
                         type="button"
                         className="btn btn-success"
@@ -31,7 +40,7 @@ const Body = () => {
                     >
                         Enhance Night Image
                     </button>
-                {/* </Link> */}
+                </Link>
             </div>
         </div>
     );

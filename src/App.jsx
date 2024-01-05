@@ -1,13 +1,14 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
-import Alert from "./components/Alert";
-import Body from "./components/Body";
-
-
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
+import Body from "./components/Body";
+import DeblurImage from "./components/DeblurImage";
+import Home from "./components/Home";
+import NightImage from "./components/NightImage";
+import Upscale from "./components/Upscale";
 
 
+import "./App.css";
 function App() {
   const [mode, setMode] = useState("light");
   const [alert, setAlert] = useState(null);
@@ -43,15 +44,16 @@ function App() {
     }
   };
   return (
-    // <Router>
-    <>
-      <Navbar title="Refinetograph" mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
-      <Body />
-      <div className="container my-3">
-
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} >
+          <Route index element={<Body />} />
+          <Route path="/upscale" element={<Upscale />} />
+          <Route path="/deblur-image" element={<DeblurImage />} />
+          <Route path="/night-image" element={<NightImage />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
