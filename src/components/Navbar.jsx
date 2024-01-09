@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Navbar = (props) => {
     return (
       <nav
@@ -22,21 +24,21 @@ const Navbar = (props) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/">
                   Home
                 </a>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="/About">
+                <Link className="nav-link" to="/About">
                   About
-                </a>
+                </Link>
               </li>
             </ul>
             
             <div
               className={`form-check form-switch text-${
-                props.mode === "light" ? "dark" : "light"
+                props.mode === "dark" ? "light" : "dark"
               }`}
             >
               <input
