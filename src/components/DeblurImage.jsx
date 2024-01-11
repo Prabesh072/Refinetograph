@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-const DeblurImage= () => {
+const DeblurImage = () => {
   const fileInputRef = useRef(null);
 
   const handleSelectImage = () => {
@@ -15,8 +15,12 @@ const DeblurImage= () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
-      <div>Deblur your blurry image with our exciting tool</div>
+    <div style={{
+      textAlign: 'center',
+      height: "88vh",
+      backgroundColor: "var(--color-1)",
+    }}>
+      <div style={{ padding: "20px" }}>Deblur your blurry image with our exciting tool</div>
 
       <input
         type="file"
@@ -25,26 +29,26 @@ const DeblurImage= () => {
         ref={fileInputRef}
       />
 
-     <div style={{ textAlign: 'center', marginTop: '20px'}}> 
-      <button
-        type= "button"
-        className="btn btn-primary me-2"
-        style={{ margin: '10px', padding: '10px' }}
-        onClick={handleSelectImage}
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          style={{ margin: '10px', padding: '10px' }}
+          onClick={handleSelectImage}
         >
-        Select Image
-      </button>
+          Select Image
+        </button>
 
-      <button
-        type= "button"
-        className="btn btn-primary me-2"
-        style={{ margin: '10px', padding: '10px' }}
-        onClick={handleProceed}
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          style={{ margin: '10px', padding: '10px' }}
+          onClick={handleProceed}
         >
-        Proceed
-      </button>
-      </div> 
+          Proceed
+        </button>
       </div>
+    </div>
 
   );
 };

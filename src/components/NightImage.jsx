@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-const NightImage= () => {
+const NightImage = () => {
   const fileInputRef = useRef(null);
 
   const handleSelectImage = () => {
@@ -15,7 +15,12 @@ const NightImage= () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <div style={{
+      textAlign: 'center', 
+      padding: '20px',
+      height: "88vh",
+      backgroundColor: "var(--color-1)"
+    }}>
       <div>Enhance your low-light image here.</div>
 
       <input
@@ -25,26 +30,26 @@ const NightImage= () => {
         ref={fileInputRef}
       />
 
-     <div style={{ textAlign: 'center', marginTop: '20px'}}> 
-      <button
-        type= "button"
-        className="btn btn-primary me-2"
-        style={{ margin: '10px', padding: '10px' }}
-        onClick={handleSelectImage}
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          style={{ margin: '10px', padding: '10px' }}
+          onClick={handleSelectImage}
         >
-        Select Image
-      </button>
+          Select Image
+        </button>
 
-      <button
-        type= "button"
-        className="btn btn-primary me-2"
-        style={{ margin: '10px', padding: '10px' }}
-        onClick={handleProceed}
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          style={{ margin: '10px', padding: '10px' }}
+          onClick={handleProceed}
         >
-        Proceed
-      </button>
-      </div> 
+          Proceed
+        </button>
       </div>
+    </div>
 
   );
 };

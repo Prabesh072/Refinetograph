@@ -15,7 +15,12 @@ const Upscale = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <div style={{
+      textAlign: 'center',
+      padding: '20px',
+      height: "88vh",
+      backgroundColor: "var(--color-1)"
+    }}>
       <div>Upscale your low-resolution image by 4X</div>
 
       <input
@@ -25,26 +30,26 @@ const Upscale = () => {
         ref={fileInputRef}
       />
 
-     <div style={{ textAlign: 'center', marginTop: '20px'}}> 
-      <button
-        type= "button"
-        className="btn btn-primary me-2"
-        style={{ margin: '10px', padding: '10px' }}
-        onClick={handleSelectImage}
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          style={{ margin: '10px', padding: '10px' }}
+          onClick={handleSelectImage}
         >
-        Select Image
-      </button>
+          Select Image
+        </button>
 
-      <button
-        type= "button"
-        className="btn btn-primary me-2"
-        style={{ margin: '10px', padding: '10px' }}
-        onClick={handleProceed}
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          style={{ margin: '10px', padding: '10px' }}
+          onClick={handleProceed}
         >
-        Proceed
-      </button>
-      </div> 
+          Proceed
+        </button>
       </div>
+    </div>
 
   );
 };

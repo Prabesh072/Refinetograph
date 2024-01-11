@@ -3,10 +3,13 @@ import { Outlet } from 'react-router-dom'
 
 const Home = () => {
     return (
-        <>
-            {/* <Navbar/> */}
-            <Outlet/>
-        </>
+        <div style={{
+            height: "90vh",
+            overflow: "hidden"
+        }}>
+
+            <Outlet />
+        </div>
     )
 }
 

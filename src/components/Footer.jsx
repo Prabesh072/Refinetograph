@@ -2,8 +2,9 @@ import React from 'react';
 
 const Footer = () => {
   return (
+    
     <footer style={footerStyle}>
-      <p>&copy; 2022 Your Website Name. All rights reserved.</p>
+      <p style={{margin:"0"}}>&copy; 2024 Refinetograph. All rights reserved.</p>
     </footer>
   );
 };
@@ -11,7 +12,8 @@ const Footer = () => {
 const footerStyle = {
   backgroundColor: '#333',
   color: '#fff',
-  textAlign: 'center',
+  textAlign: "center",
+  // alignItems: "center",
   padding: '1rem',
   position: 'fixed',
   bottom: '0',

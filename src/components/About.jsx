@@ -14,7 +14,7 @@ const About = () => {
           justifyContent: 'center',
           color: "#fff"
         }}>
-        <h1> About Us</h1>
+        <h1> About</h1>
       </div>
 
       <div className='section'>

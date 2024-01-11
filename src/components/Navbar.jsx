@@ -1,14 +1,12 @@
-import { useState } from "react";
 // import Logo from '../assets/logo.png'  
 // import ALogo from '../assets/react.svg'  
 
-const Navbar = (props) => {
-  const [darkMode, setDarkMode] = useState(false)
+const Navbar = () => {
   return (
     <>
       <nav
         style={{ transition: "all ease-in-out .5s" }}
-        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} anim shadow-sm`}
+        className={`navbar navbar-expand-lg anim shadow-sm`}
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
@@ -41,24 +39,7 @@ const Navbar = (props) => {
               </li>
             </ul>
 
-            <div
-              className={`form-check form-switch text-${props.mode === "dark" ? "light" : "dark"
-                }`}
-            >
-              <input
-                className="form-check-input"
-                onClick={props.toggleMode}
-                type="checkbox"
-                role="switch"
-                id="flexSwitchCheckDefault"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="flexSwitchCheckDefault"
-              >
-                Dark Mode
-              </label>
-            </div>
+
           </div>
         </div>
       </nav>
