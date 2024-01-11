@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { useState } from "react";
 
 const Navbar = (props) => {
-    return (
+  const [darkMode, setDarkMode] = useState(false)
+  return (
+    <>
       <nav
-        style={{ transition: "all ease-in-out .5s", border:'0.5px solid black'}}
-        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} anim`}
+        style={{ transition: "all ease-in-out .5s" }}
+        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} anim shadow-sm`}
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
@@ -30,16 +32,15 @@ const Navbar = (props) => {
               </li>
 
               <li className="nav-item">
-                <Link className="nav-link" to="/about">
+                <a className="nav-link active" aria-current="page" href="/about">
                   About
-                </Link>
+                </a>
               </li>
             </ul>
-            
+
             <div
-              className={`form-check form-switch text-${
-                props.mode === "dark" ? "light" : "dark"
-              }`}
+              className={`form-check form-switch text-${props.mode === "dark" ? "light" : "dark"
+                }`}
             >
               <input
                 className="form-check-input"
@@ -58,7 +59,8 @@ const Navbar = (props) => {
           </div>
         </div>
       </nav>
-    );
-  };
-  
-  export default Navbar;
+    </>
+  );
+};
+
+export default Navbar;
