@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Navbar = (props) => {
     return (
       <nav
-        style={{ transition: "all ease-in-out .5s" }}
+        style={{ transition: "all ease-in-out .5s", border:'0.5px solid black'}}
         className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} anim`}
       >
         <div className="container-fluid">
@@ -30,7 +30,7 @@ const Navbar = (props) => {
               </li>
 
               <li className="nav-item">
-                <Link className="nav-link" to="/About">
+                <Link className="nav-link" to="/about">
                   About
                 </Link>
               </li>

@@ -12,8 +12,8 @@ import About from "./components/About";
 import "./App.css";
 
 function App() {
-  // const [mode, setMode] = useState("light");
-  // const [alert, setAlert] = useState(null);
+  const [mode, setMode] = useState("light");
+  const [alert, setAlert] = useState(null);
 
   // const showAlert = (message, type) => {
   //   setAlert({
@@ -25,27 +25,27 @@ function App() {
   //   }, 3000);
   // };
 
-  // const toggleMode = () => {
-  //   if (mode === "light") {
-  //     setMode("dark");
-  //     document.body.style.backgroundColor = "grey";
-  //     showAlert("Dark Mode has been enabled. ", "success");
-  //     document.title = "Refinetograph- Dark Mode";
+  const toggleMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.backgroundColor = "grey";
+      showAlert("Dark Mode has been enabled. ", "success");
+      document.title = "Refinetograph- Dark Mode";
 
       // Change the title dynamically    
-      // setInterval(() => {
-      //   document.title = "Refinetograph is amazing";
-      // }, 2000);
-      // setInterval(() => {
-      //   document.title = "Install Refinetograph";
-      // }, 1500);
-    // } else {
-    //   setMode("light");
-    //   document.body.style.backgroundColor = "white";
-    //   showAlert("Light Mode has been enabled. ", "success");
-    //   document.title = "Refinetograph- Light Mode";
-    // }
-  // };
+      setInterval(() => {
+        document.title = "Refinetograph is amazing";
+      }, 2000);
+      setInterval(() => {
+        document.title = "Install Refinetograph";
+      }, 1500);
+    } else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      showAlert("Light Mode has been enabled. ", "success");
+      document.title = "Refinetograph- Light Mode";
+    }
+  };
   return (
     <Router>
       <Routes>
