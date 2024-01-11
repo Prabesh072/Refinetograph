@@ -1,4 +1,6 @@
 import { useState } from "react";
+// import Logo from '../assets/logo.png'  
+// import ALogo from '../assets/react.svg'  
 
 const Navbar = (props) => {
   const [darkMode, setDarkMode] = useState(false)
@@ -11,6 +13,7 @@ const Navbar = (props) => {
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             Refinetograph
+            {/* <img src={ALogo} height={"60px"} alt="Refinetograph" /> */}
           </a>
           <button
             className="navbar-toggler"
