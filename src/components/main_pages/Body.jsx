@@ -5,14 +5,15 @@ const Body = () => {
     return (
         <div
             style={{
-                // display: "flex",
-                // flexDirection:"column",
+                display: "flex",
+                flexDirection:"column",
+                alignItems: "center",
                 height:"88vh",
                 backgroundColor: "var(--color-1)",
                 padding: "20px",
             }}>
             <h1>Welcome to our webapp Refinetograph...</h1>
-            <p>Upscale Image/ Deblur Image/ Enhance Night Image</p>
+            <h4 style={{padding:"20px"}}>Select the feature you want to use.</h4>
 
             <div style={{ display: "flex", gap: "30px", marginTop: "30px" }}>
                 <Link to="/upscale">

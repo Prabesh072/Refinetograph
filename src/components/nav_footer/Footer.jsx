@@ -4,7 +4,10 @@ const Footer = () => {
   return (
     
     <footer style={footerStyle}>
-      <p style={{margin:"0"}}>&copy; 2024 Refinetograph. All rights reserved.</p>
+      <div style={{margin:"0"}}>&copy; 2024 Refinetograph. All rights reserved.</div>
+      <div>
+        <a href="/teammembers">Team Members</a>
+      </div>
     </footer>
   );
 };
@@ -12,7 +15,7 @@ const Footer = () => {
 const footerStyle = {
   backgroundColor: '#333',
   color: '#fff',
-  textAlign: "center",
+  textAlign: "left",
   // alignItems: "center",
   padding: '1rem',
   position: 'fixed',
