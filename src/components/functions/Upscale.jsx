@@ -21,7 +21,7 @@ const Upscale = () => {
       height: "88vh",
       backgroundColor: "var(--color-1)"
     }}>
-      <div>Upscale your low-resolution image by 4X</div>
+      <h2>Upscale your low-resolution image by 4X</h2>
 
       <input
         type="file"

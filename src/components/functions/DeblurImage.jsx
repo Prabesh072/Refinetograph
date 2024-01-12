@@ -17,10 +17,11 @@ const DeblurImage = () => {
   return (
     <div style={{
       textAlign: 'center',
+      padding: '20px',
       height: "88vh",
       backgroundColor: "var(--color-1)",
     }}>
-      <div style={{ padding: "20px" }}>Deblur your blurry image with our exciting tool</div>
+      <h2>Deblur your blurry image with our exciting tool</h2>
 
       <input
         type="file"

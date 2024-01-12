@@ -12,7 +12,7 @@ import About from "./components//main_pages/About";
 import "./App.css";
 import TeamMembers from "./components/main_pages/TeamMembers";
 
-const App= ()=> {
+const App = () => {
   return (
     <Router>
       <Routes>
@@ -21,12 +21,12 @@ const App= ()=> {
           <Route path="/upscale" element={<Upscale />} />
           <Route path="/deblur-image" element={<DeblurImage />} />
           <Route path="/night-image" element={<NightImage />} />
-          <Route path="/about" element ={<About/>} />
-          <Route path="/team-members" element ={<TeamMembers/>}/>
+          <Route path="/about" element={<About />} />
+          <Route path="/team-members" element={<TeamMembers />} />
         </Route>
       </Routes>
     </Router>
   );
-  };
- 
+};
+
 export default App;

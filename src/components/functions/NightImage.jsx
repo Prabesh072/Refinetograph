@@ -16,12 +16,12 @@ const NightImage = () => {
 
   return (
     <div style={{
-      textAlign: 'center', 
+      textAlign: 'center',
       padding: '20px',
       height: "88vh",
       backgroundColor: "var(--color-1)"
     }}>
-      <div>Enhance your low-light image here.</div>
+      <h2>Enhance your low-light image here.</h2>
 
       <input
         type="file"

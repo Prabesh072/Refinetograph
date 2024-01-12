@@ -6,7 +6,7 @@ const Home = () => {
         <div style={{
             height: "90vh",
             // overflow: "hidden"
-            backgroundColor:"var(--color-1)"
+            backgroundColor: "var(--color-1)"
         }}>
 
             <Outlet />
