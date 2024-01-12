@@ -2,12 +2,19 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    
-    <footer style={footerStyle}>
-      <div style={{margin:"0"}}>&copy; 2024 Refinetograph. All rights reserved.</div>
-      <div>
-        <a href="/team-members">Team Members</a>
+
+    <footer style={footerStyle} >
+      <div style={{
+        display: 'flex',
+        gap: "10px"
+      }}>
+        <a href="/" >Home</a>
+        <a href="/team-members" >Team Members</a>
       </div>
+
+      <div style={{ margin: "0" }}>&copy; 2024 Refinetograph. All rights reserved.
+      </div>
+
     </footer>
   );
 };
@@ -15,8 +22,8 @@ const Footer = () => {
 const footerStyle = {
   backgroundColor: '#333',
   color: '#fff',
-  textAlign: "left",
-  // alignItems: "center",
+  display: 'flex',
+  justifyContent: 'space-between',
   padding: '1rem',
   position: 'fixed',
   bottom: '0',
