@@ -22,12 +22,11 @@ const App= ()=> {
           <Route path="/deblur-image" element={<DeblurImage />} />
           <Route path="/night-image" element={<NightImage />} />
           <Route path="/about" element ={<About/>} />
-          <Route path="/teammembers" element ={<TeamMembers/>}/>
+          <Route path="/team-members" element ={<TeamMembers/>}/>
         </Route>
       </Routes>
     </Router>
   );
   };
  
-
 export default App;

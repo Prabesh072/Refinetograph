@@ -6,7 +6,7 @@ const Footer = () => {
     <footer style={footerStyle}>
       <div style={{margin:"0"}}>&copy; 2024 Refinetograph. All rights reserved.</div>
       <div>
-        <a href="/teammembers">Team Members</a>
+        <a href="/team-members">Team Members</a>
       </div>
     </footer>
   );
