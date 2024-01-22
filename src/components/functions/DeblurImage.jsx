@@ -1,13 +1,28 @@
 import React, { useRef, useState } from 'react';
 
-
 const DeblurImage = () => {
   const fileInputRef = useRef(null);
   const [processedImage, setProcessedImage] = useState(null);
+  const [selectedImageName, setSelectedImageName] = useState('');
+  const [selectedImagePreview, setSelectedImagePreview] = useState(null);
 
   const handleSelectImage = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
+    }
+  };
+
+  const handleImageInputChange = (event) => {
+    if (event.target.files.length > 0) {
+      const imageFile = event.target.files[0];
+
+      // Extract the name from the full path
+      const imageName = imageFile.name;
+      setSelectedImageName(imageName);
+
+      // Create a preview URL for the selected image
+      const previewURL = URL.createObjectURL(imageFile);
+      setSelectedImagePreview(previewURL);
     }
   };
 
@@ -18,28 +33,26 @@ const DeblurImage = () => {
       const formData = new FormData();
       formData.append('image', imageFile);
 
-      //Make a POST request to the backend server
+      // Make a POST request to the backend server
       fetch('http://localhost:8848/process-image', {
         method: 'POST',
         body: formData,
       })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("HTTP error! Status: ${response.status");
-          }
-          return response.blob();
-        })
-
-        .then(blob => {
-          //Process the response- update UI with the processed image
-          setProcessedImage(URL, createObjectURL(blob));
-        })
-        .catch(error => {
-          console.error('Error:', error.message);
-        });
-    }
-    else {
-      console.log('Please select an image before procceding.');
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        // Process the response - Update the UI with the processed image
+        setProcessedImage(URL.createObjectURL(blob));
+      })
+      .catch(error => {
+        console.error('Error:', error.message);
+      });
+    } else {
+      console.log('Please select an image before proceeding.');
     }
   };
 
@@ -57,6 +70,7 @@ const DeblurImage = () => {
         accept="image/*"
         style={{ display: 'none' }}
         ref={fileInputRef}
+        onInput={handleImageInputChange}
       />
 
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
@@ -69,10 +83,13 @@ const DeblurImage = () => {
           Select Image
         </button>
 
-        <div style={{ margin: '10px', padding: '10px' }}>
-          (selectedImageInfo && <p>{selectedImageInfo}</p>)
-        </div>
-
+        {selectedImagePreview && (
+          <div style={{ margin: '10px', padding: '10px' }}>
+            <h5>Selected Image</h5>
+            <img src={selectedImagePreview} alt="Selected Image" style={{ maxWidth: '100%' }} />
+            {selectedImageName && <p>{selectedImageName}</p>}
+          </div>
+        )}
 
         <button
           type="button"
@@ -84,12 +101,10 @@ const DeblurImage = () => {
         </button>
       </div>
 
-
       {processedImage && (
         <div style={{ marginTop: '20px' }}>
           <h3>Processed Image</h3>
           <img src={processedImage} alt="Processed Image" style={{ maxWidth: '100%' }} />
-
         </div>
       )}
     </div>
