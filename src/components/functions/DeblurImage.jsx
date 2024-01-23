@@ -15,12 +15,8 @@ const DeblurImage = () => {
   const handleImageInputChange = (event) => {
     if (event.target.files.length > 0) {
       const imageFile = event.target.files[0];
-
-      // Extract the name from the full path
       const imageName = imageFile.name;
       setSelectedImageName(imageName);
-
-      // Create a preview URL for the selected image
       const previewURL = URL.createObjectURL(imageFile);
       setSelectedImagePreview(previewURL);
     }
@@ -29,11 +25,9 @@ const DeblurImage = () => {
   const handleProceed = () => {
     if (fileInputRef.current && fileInputRef.current.files.length > 0) {
       const imageFile = fileInputRef.current.files[0];
-
       const formData = new FormData();
       formData.append('image', imageFile);
 
-      // Make a POST request to the backend server
       fetch('http://localhost:8848/process-image', {
         method: 'POST',
         body: formData,
@@ -45,7 +39,6 @@ const DeblurImage = () => {
         return response.blob();
       })
       .then(blob => {
-        // Process the response - Update the UI with the processed image
         setProcessedImage(URL.createObjectURL(blob));
       })
       .catch(error => {
@@ -60,7 +53,7 @@ const DeblurImage = () => {
     <div style={{
       textAlign: 'center',
       padding: '20px',
-      height: "88vh",
+      height: "120vh",
       backgroundColor: "var(--color-1)",
     }}>
       <h2>Denoise your noisy image with our exciting tool</h2>
@@ -108,7 +101,6 @@ const DeblurImage = () => {
         </div>
       )}
     </div>
-
   );
 };
 
