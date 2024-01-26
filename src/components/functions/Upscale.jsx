@@ -96,6 +96,13 @@ const Upscale = () => {
           Proceed
         </button>
       </div>
+
+      {processedImage && (
+        <div style={{ marginTop: '20px' }}>
+          <h3>Processed Image</h3>
+          <img src={processedImage} alt="Processed Image" style={{ maxWidth: '100%' }} />
+        </div>
+      )}
     </div>
 
   );

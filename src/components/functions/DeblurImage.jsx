@@ -28,7 +28,7 @@ const DeblurImage = () => {
       const formData = new FormData();
       formData.append('image', imageFile);
 
-      fetch('http://localhost:8848/process-image', {
+      fetch('http://localhost:8848/deblur-image', {
         method: 'POST',
         body: formData,
       })
