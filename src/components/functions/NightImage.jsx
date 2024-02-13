@@ -3,10 +3,8 @@ import React, { useRef, useState } from 'react';
 const NightImage = () => {
   const fileInputRef = useRef(null);
   const [processedImage, setProcessedImage] = useState(null);
-  const [selectedImage, setSelectedImage] = useState({
-    name: '',
-    preview: null,
-  });
+  const [selectedImageName, setSelectedImageName] = useState('');
+  const [selectedImagePreview, setSelectedImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -17,43 +15,44 @@ const NightImage = () => {
   };
 
   const handleImageInputChange = (event) => {
-    const imageFile = event.target.files[0];
-
-    if (imageFile) {
+    if (event.target.files.length > 0) {
+      const imageFile = event.target.files[0];
       const imageName = imageFile.name;
-      const previewURL = URL.createObjectURL(imageFile);
+      setSelectedImageName(imageName);
 
-      // Resize the preview image to default size (720 by 480)
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = 720;
-        canvas.height = 480;
-        ctx.drawImage(img, 0, 0, 720, 480);
-        const resizedPreviewURL = canvas.toDataURL('image/jpeg');
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = 720;
+          canvas.height = 480;
+          ctx.drawImage(img, 0, 0, 720, 480);
+          const resizedPreviewURL = canvas.toDataURL('image/jpeg');
 
-        setSelectedImage({
-          name: imageName,
-          preview: resizedPreviewURL,
-        });
+          setSelectedImagePreview(resizedPreviewURL);
+        };
+        img.src = reader.result;
       };
-      img.src = previewURL;
+      reader.readAsDataURL(imageFile);
 
       setErrorMessage('');
     }
   };
 
+
   const handleProceed = () => {
-    if (!selectedImage.preview) {
+    if (!selectedImagePreview) {
       setErrorMessage('Select a file first.');
       return;
     }
 
     setLoading(true);
 
+    const imageFile = fileInputRef.current.files[0];
     const formData = new FormData();
-    formData.append('image', fileInputRef.current.files[0]);
+    formData.append('image', imageFile);
 
     fetch('http://localhost:8848/night-image', {
       method: 'POST',
@@ -61,7 +60,7 @@ const NightImage = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error('Failed to process the image. Please try again.')
         }
         return response.blob();
       })
@@ -88,68 +87,91 @@ const NightImage = () => {
 
   const handleChooseAnotherFile = () => {
     setProcessedImage(null);
-    setSelectedImage({
-      name: '',
-      preview: null,
-    });
+    setSelectedImageName('');
+    setSelectedImagePreview(null);
     setErrorMessage('');
   };
 
   return (
-    <div className="night-image-container" style={{ textAlign: 'center', padding: '20px', height: '120vh', backgroundColor: 'var(--color-1)' }}>
-      <h2>Enhance your low-light image here.</h2>
+    <div style={{
+      textAlign: 'center',
+      padding: '20px',
+      backgroundColor: 'var(--color-1)',
+    }}>
+      <h2>Enhance you low-light image here</h2>
 
       <input
         type="file"
         accept="image/*"
         style={{ display: 'none' }}
         ref={fileInputRef}
-        onChange={handleImageInputChange}
+        onInput={handleImageInputChange}
       />
 
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
         {!processedImage && (
-          <>
-            <button
-              type="button"
-              className="btn btn-primary me-2"
-              style={{ margin: '10px', padding: '10px' }}
-              onClick={handleSelectImage}
-            >
-              Select Image
-            </button>
+          <button
+            type="button"
+            className="btn btn-primary me-2"
+            style={{ margin: '10px', padding: '10px' }}
+            onClick={handleSelectImage}
+          >
+            Select Image
+          </button>
+        )}
 
-            {selectedImage.preview && (
-              <div style={{ margin: '10px', padding: '10px' }}>
-                <h5>Selected Image</h5>
-                <img src={selectedImage.preview} alt="Selected Image" style={{ maxWidth: '100%' }} />
-                {selectedImage.name && <p>{selectedImage.name}</p>}
-              </div>
-            )}
+        {selectedImagePreview && (
+          <div style={{ margin: '10px', padding: '10px' }}>
+            <h5>Selected Image</h5>
+            <img 
+            src={selectedImagePreview} 
+            alt="Selected Image" 
+            style={{ maxWidth: '100%', width: '720px', height: '480px', objectFit: 'cover' }}
+            />
+            {selectedImageName && <p>{selectedImageName}</p>}
+          </div>
+        )}
 
-            {errorMessage && (
-              <div style={{ margin: '10px', padding: '10px', color: 'red' }}>
-                <p>{errorMessage}</p>
-              </div>
-            )}
+        {errorMessage && (
+          <div style={{ margin: '10px', padding: '10px', color: 'red' }}>
+            <p>{errorMessage}</p>
+          </div>
+        )}
 
-            <button
-              type="button"
-              className="btn btn-primary me-2"
-              style={{ margin: '10px', padding: '10px' }}
-              onClick={handleProceed}
-              disabled={loading}
-            >
-              {loading ? 'Processing...' : 'Proceed'}
-            </button>
-          </>
+        {!processedImage && (
+          <button
+            type="button"
+            className="btn btn-primary me-2"
+            style={{ margin: '10px', padding: '10px' }}
+            onClick={handleProceed}
+            disabled={loading}
+          >
+            {loading ? 'Processing...' : 'Proceed'}
+          </button>
         )}
 
         {processedImage && (
-          <div style={{ marginTop: '20px' }}>
-            <h3>Processed Image</h3>
-            <img src={processedImage} alt="Processed Image" style={{ maxWidth: '100%' }} />
-            <div style={{ marginTop: '10px' }}>
+          <div 
+          style={{ 
+            marginTop: '20px',
+            paddingBottom: '120px', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center' }}>
+            <h5>Processed Image</h5>
+            <div style={{ 
+              width: '100%', 
+              maxWidth: '600px' }}>
+              <img src={processedImage} alt="Processed Image" 
+              style={{ 
+                width: '100%', 
+                height: 'auto' }} />
+            </div>
+            <div 
+            style={{ 
+              marginTop: '10px', 
+              display: 'flex', 
+              gap: '10px' }}>
               <button
                 type="button"
                 className="btn btn-success me-2"

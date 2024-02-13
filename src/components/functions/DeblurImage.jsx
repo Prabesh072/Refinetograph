@@ -19,11 +19,28 @@ const DeblurImage = () => {
       const imageFile = event.target.files[0];
       const imageName = imageFile.name;
       setSelectedImageName(imageName);
-      const previewURL = URL.createObjectURL(imageFile);
-      setSelectedImagePreview(previewURL);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = 720;
+          canvas.height = 480;
+          ctx.drawImage(img, 0, 0, 720, 480);
+          const resizedPreviewURL = canvas.toDataURL('image/jpeg');
+
+          setSelectedImagePreview(resizedPreviewURL);
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(imageFile);
+
       setErrorMessage('');
     }
   };
+
 
   const handleProceed = () => {
     if (!selectedImagePreview) {
@@ -41,17 +58,18 @@ const DeblurImage = () => {
       method: 'POST',
       body: formData,
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error('Failed to process the image. Please try again.')
         }
         return response.blob();
       })
-      .then(blob => {
+      .then((blob) => {
         setProcessedImage(URL.createObjectURL(blob));
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error:', error.message);
+        setErrorMessage('An error occurred during processing.');
       })
       .finally(() => {
         setLoading(false);
@@ -75,14 +93,12 @@ const DeblurImage = () => {
   };
 
   return (
-    <div className="deblur-image-container"
-      style={{
-        textAlign: 'center',
-        padding: '20px',
-        height: '120vh',
-        backgroundColor: 'var(--color-1)'
-      }}>
-      <h2>Denoise your noisy image with our exciting tool</h2>
+    <div style={{
+      textAlign: 'center',
+      padding: '20px',
+      backgroundColor: 'var(--color-1)',
+    }}>
+      <h2>Denoise your pixelated image...</h2>
 
       <input
         type="file"
@@ -107,7 +123,11 @@ const DeblurImage = () => {
         {selectedImagePreview && (
           <div style={{ margin: '10px', padding: '10px' }}>
             <h5>Selected Image</h5>
-            <img src={selectedImagePreview} alt="Selected Image" style={{ maxWidth: '100%' }} />
+            <img 
+            src={selectedImagePreview} 
+            alt="Selected Image" 
+            style={{ maxWidth: '100%', width: '720px', height: '480px', objectFit: 'cover' }}
+            />
             {selectedImageName && <p>{selectedImageName}</p>}
           </div>
         )}
@@ -131,10 +151,27 @@ const DeblurImage = () => {
         )}
 
         {processedImage && (
-          <div style={{ marginTop: '20px' }}>
-            <h3>Processed Image</h3>
-            <img src={processedImage} alt="Processed Image" style={{ maxWidth: '100%' }} />
-            <div style={{ marginTop: '10px' }}>
+          <div 
+          style={{ 
+            marginTop: '20px',
+            paddingBottom: '120px', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center' }}>
+            <h5>Processed Image</h5>
+            <div style={{ 
+              width: '100%', 
+              maxWidth: '600px' }}>
+              <img src={processedImage} alt="Processed Image" 
+              style={{ 
+                width: '100%', 
+                height: 'auto' }} />
+            </div>
+            <div 
+            style={{ 
+              marginTop: '10px', 
+              display: 'flex', 
+              gap: '10px' }}>
               <button
                 type="button"
                 className="btn btn-success me-2"

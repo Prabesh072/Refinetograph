@@ -19,8 +19,24 @@ const Upscale = () => {
       const imageFile = event.target.files[0];
       const imageName = imageFile.name;
       setSelectedImageName(imageName);
-      const previewURL = URL.createObjectURL(imageFile);
-      setSelectedImagePreview(previewURL);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = 720;
+          canvas.height = 480;
+          ctx.drawImage(img, 0, 0, 720, 480);
+          const resizedPreviewURL = canvas.toDataURL('image/jpeg');
+
+          setSelectedImagePreview(resizedPreviewURL);
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(imageFile);
+
       setErrorMessage('');
     }
   };
@@ -52,6 +68,7 @@ const Upscale = () => {
       })
       .catch(error => {
         console.error('Error:', error.message);
+        setErrorMessage('An error occurred during processing.');
       })
       .finally(() => {
         setLoading(false);
@@ -78,7 +95,6 @@ const Upscale = () => {
     <div style={{
       textAlign: 'center',
       padding: '20px',
-      height: '120vh',
       backgroundColor: 'var(--color-1)',
     }}>
       <h2>Upscale your low-resolution image by 4X</h2>
@@ -109,7 +125,7 @@ const Upscale = () => {
             <img 
             src={selectedImagePreview} 
             alt="Selected Image" 
-            style={{ maxWidth: '100%', width: '480px', height: '360px', objectFit: 'cover' }}
+            style={{ maxWidth: '100%', width: '720px', height: '480px', objectFit: 'cover' }}
             />
             {selectedImageName && <p>{selectedImageName}</p>}
           </div>
@@ -125,7 +141,8 @@ const Upscale = () => {
           <button
             type="button"
             className="btn btn-primary me-2"
-            style={{ margin: '10px', padding: '10px' }}
+            style={{ margin: '10px',
+            padding: '10px' }}
             onClick={handleProceed}
             disabled={loading}
           >
@@ -134,12 +151,26 @@ const Upscale = () => {
         )}
 
         {processedImage && (
-          <div style={{ marginTop: '20px',paddingBottom: '120px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div 
+          style={{ 
+            marginTop: '20px',
+            paddingBottom: '120px', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center' }}>
             <h5>Processed Image</h5>
-            <div style={{ width: '100%', maxWidth: '600px' }}>
-              <img src={processedImage} alt="Processed Image" style={{ width: '100%', height: 'auto' }} />
+            <div style={{ 
+              width: '100%', 
+              maxWidth: '600px' }}>
+              <img src={processedImage} alt="Processed Image" 
+              style={{ 
+                width: '100%', 
+                height: 'auto' }} />
             </div>
-            <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
+            <div style={{ 
+              marginTop: '10px',
+              display: 'flex', 
+              gap: '10px' }}>
               <button
                 type="button"
                 className="btn btn-success me-2"
