@@ -95,6 +95,7 @@ const NightImage = () => {
   return (
     <div style={{
       textAlign: 'center',
+      height: '100vh',
       padding: '20px',
       backgroundColor: 'var(--color-1)',
     }}>

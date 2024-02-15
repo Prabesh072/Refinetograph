@@ -96,6 +96,7 @@ const DeblurImage = () => {
     <div style={{
       textAlign: 'center',
       padding: '20px',
+      height: '110vh',
       backgroundColor: 'var(--color-1)',
     }}>
       <h2>Denoise your pixelated image...</h2>
