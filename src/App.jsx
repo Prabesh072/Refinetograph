@@ -2,9 +2,9 @@ import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import Body from "./components/main_pages/Body";
-import DeblurImage from "./components/functions/DeblurImage";
+import DenoiseImage from "./components/functions/DenoiseImage";
 import Home from "./components/main_pages/Home";
-import NightImage from "./components/functions/NightImage";
+import LowlightImage from "./components/functions/LowlightImage";
 import Upscale from "./components/functions/Upscale";
 import About from "./components/main_pages/About";
 import TeamMembers from "./components/main_pages/TeamMembers";
@@ -21,8 +21,8 @@ const App = () => {
         >
           <Route index element={<Body />} />
           <Route path="/upscale" element={<Upscale />} />
-          <Route path="/deblur-image" element={<DeblurImage />} />
-          <Route path="/night-image" element={<NightImage />} />
+          <Route path="/denoise-image" element={<DenoiseImage />} />
+          <Route path="/lowlight-image" element={<LowlightImage />} />
           <Route path="/about" element={<About />} />
           <Route path="/team-members" element={<TeamMembers />} />
         </Route>

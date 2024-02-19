@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-const NightImage = () => {
+const LowlightImage = () => {
   const fileInputRef = useRef(null);
   const [processedImage, setProcessedImage] = useState(null);
   const [selectedImageName, setSelectedImageName] = useState('');
@@ -54,7 +54,7 @@ const NightImage = () => {
     const formData = new FormData();
     formData.append('image', imageFile);
 
-    fetch('http://localhost:8848/night-image', {
+    fetch('http://localhost:8848/lowlight-image', {
       method: 'POST',
       body: formData,
     })
@@ -95,11 +95,11 @@ const NightImage = () => {
   return (
     <div style={{
       textAlign: 'center',
-      height: '100vh',
+      // height: '100vh',
       padding: '20px',
       backgroundColor: 'var(--color-1)',
     }}>
-      <h2>Enhance you low-light image here</h2>
+      <h2>Enhance your lowlight image here</h2>
 
       <input
         type="file"
@@ -197,4 +197,4 @@ const NightImage = () => {
   );
 };
 
-export default NightImage;
+export default LowlightImage;

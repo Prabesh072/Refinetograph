@@ -95,7 +95,7 @@ const Upscale = () => {
     <div style={{
       textAlign: 'center',
       padding: '20px',
-      height: '100vh',
+      // height: '120vh',
       backgroundColor: 'var(--color-1)',
     }}>
       <h2>Upscale your low-resolution image by 4X</h2>

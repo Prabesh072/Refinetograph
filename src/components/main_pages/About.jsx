@@ -21,11 +21,11 @@ const About = () => {
         <h3>Image Enhancement:</h3>
         <p >We have used SRGAN architecture for building our model, which is successfully able to upscale/enhance image resolution by 4times. </p>
 
-        <h3>Deblur Image:</h3>
-        <p>To generate our model for deblurring image, we used Convolutional Autoencoders, which is capable to achieve promising result.</p>
+        <h3>Denoise Image:</h3>
+        <p>To generate our model for image denoising, we used Convolutional Autoencoders, which is capable to achieve promising result.</p>
 
         <h3>Night Image:</h3>
-        <p>Still in progress...</p>
+        <p>Zero-DCE was implemented for the purpose of lowlight image enhancement.</p>
       </div>
     </div>
 

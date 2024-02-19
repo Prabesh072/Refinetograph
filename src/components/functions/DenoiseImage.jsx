@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-const DeblurImage = () => {
+const DenoiseImage = () => {
   const fileInputRef = useRef(null);
   const [processedImage, setProcessedImage] = useState(null);
   const [selectedImageName, setSelectedImageName] = useState('');
@@ -54,7 +54,7 @@ const DeblurImage = () => {
     const formData = new FormData();
     formData.append('image', imageFile);
 
-    fetch('http://localhost:8848/deblur-image', {
+    fetch('http://localhost:8848/denoise-image', {
       method: 'POST',
       body: formData,
     })
@@ -96,7 +96,7 @@ const DeblurImage = () => {
     <div style={{
       textAlign: 'center',
       padding: '20px',
-      height: '110vh',
+      // height: '110vh',
       backgroundColor: 'var(--color-1)',
     }}>
       <h2>Denoise your pixelated image...</h2>
@@ -197,4 +197,4 @@ const DeblurImage = () => {
   );
 };
 
-export default DeblurImage;
+export default DenoiseImage;

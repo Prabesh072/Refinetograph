@@ -34,7 +34,7 @@ const Body = () => {
                         className="btn btn-primary me-2"
                         style={{ fontSize: "16px", padding: "10px 20px" }}
                     >
-                        Deblur Image
+                        Denoise Image
                     </button>
                 </Link>
 
@@ -46,7 +46,7 @@ const Body = () => {
                         className="btn btn-success"
                         style={{ fontSize: "16px", padding: "10px 20px" }}
                     >
-                        Enhance Night Image
+                        Enhance Lowlight Image
                     </button>
                 </Link>
             </div>
