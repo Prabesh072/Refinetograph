@@ -56,7 +56,7 @@ const TeamMembers = () => {
                 }} />
               <div class="card-body">
                 <h5 class="card-title">Prabesh Aryal</h5>
-                <p class="card-text">Hey, I am known as the most handsome guy of my college. The living Legend.</p>
+                <p class="card-text"> A computer engineering student with a passion for coding and a love for anime and football.</p>
 
                 <span style={{ display: 'flex', gap: "10px", justifyContent: 'center' }}>
 
@@ -92,7 +92,7 @@ const TeamMembers = () => {
                 }} />
               <div class="card-body">
                 <h5 class="card-title">Robinson Pujara</h5>
-                <p class="card-text">Hey, I am the Namuna of my college, I'm in the position of CR because of mercy of lord Prabesh.</p>
+                <p class="card-text">Wanna have a thrill journey with me in DevOps? Currently intern at LeapFrog.</p>
 
                 <span style={{
                   display: 'flex',
@@ -130,7 +130,7 @@ const TeamMembers = () => {
                 }} />
               <div class="card-body">
                 <h5 class="card-title">Santosh Gaire</h5>
-                <p class="card-text">Hey, you might know me by the tag of Richest person of BCT B, sabb lai kindinxu ma ta.</p>
+                <p class="card-text">Passionate Computer Engineering student with a keen interest in Artificial Intelligence. </p>
                 <span style={{
                   display: 'flex',
                   gap: "10px",
