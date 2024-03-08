@@ -28,7 +28,7 @@ const Body = () => {
                 </Link>
 
 
-                <Link to="/deblur-image">
+                <Link to="/denoise-image">
                     <button
                         type="button"
                         className="btn btn-primary me-2"
@@ -40,7 +40,7 @@ const Body = () => {
 
 
 
-                <Link to="/night-image" >
+                <Link to="/lowlight-image" >
                     <button
                         type="button"
                         className="btn btn-success"

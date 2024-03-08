@@ -108,12 +108,15 @@ const Upscale = () => {
         onInput={handleImageInputChange}
       />
 
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <div style={{ textAlign: 'center', marginTop: '20px'}}>
         {!processedImage && (
           <button
             type="button"
             className="btn btn-primary me-2"
-            style={{ margin: '10px', padding: '10px' }}
+            style={{ 
+            margin: '10px',
+            marginBottom:'80px',
+            padding: '10px' }}
             onClick={handleSelectImage}
           >
             Select Image
@@ -142,7 +145,8 @@ const Upscale = () => {
           <button
             type="button"
             className="btn btn-primary me-2"
-            style={{ margin: '10px',
+            style={{ margin: '10px', 
+            marginBottom:'80px',
             padding: '10px' }}
             onClick={handleProceed}
             disabled={loading}
